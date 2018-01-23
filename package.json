@@ -1,0 +1,18 @@
+{
+  "name": "cid-utils-website",
+  "version": "1.0.0",
+  "description": "Website for decoding CIDs",
+  "main": "index.js",
+  "scripts": {
+    "build": "parcel build index.html --no-minify --public-url '.'",
+    "dev": "parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Victor Bjelkholm",
+  "license": "MIT",
+  "dependencies": {
+    "cids": "^0.5.2",
+    "parcel-bundler": "^1.4.1"
+  }
+}
