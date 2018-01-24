@@ -13,6 +13,8 @@
   "license": "MIT",
   "dependencies": {
     "cids": "^0.5.2",
+    "multibase": "^0.4.0",
+    "multihashes": "^0.4.13",
     "parcel-bundler": "^1.4.1"
   }
 }
