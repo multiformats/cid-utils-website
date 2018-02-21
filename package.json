@@ -8,7 +8,7 @@
     "build": "parcel build index.html --public-url '.'",
     "dev": "parcel index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "ipfs add -r -q dist | tail -n1 >versions/current; cat versions/current >> versions/history; cat versions/current"
+    "deploy": "ipfs add -r --quieter dist"
   },
   "keywords": [],
   "author": "Victor Bjelkholm",
