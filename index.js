@@ -83,11 +83,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function toDefinitionList (obj) {
   const keys = Object.keys(obj)
   const html = `
-    <dl class='tl ma0 pa0 monospace'>
+    <dl class='tl ma0 pa0'>
       ${ keys.map(k => `
         <div class='pb1'>
-          <dt class='dib pr2 gray'>${k}:</dt>
-          <dd class='dib ma0 pa0 fw6'>${obj[k]}</dd>
+          <dt class='dib pr2 gray monospace'>${k}:</dt>
+          <dd class='dib ma0 pa0 fw5'>${obj[k]}</dd>
         </div>`).join('') }
     </dl>
   `
