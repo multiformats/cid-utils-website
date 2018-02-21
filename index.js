@@ -53,6 +53,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const multicodecOutput = document.querySelector('#multicodec')
   const multibaseOutput = document.querySelector('#multibase')
   const humanReadableCidOutput = document.querySelector('#hr-cid')
+  const errorOutput = document.querySelector('#input-error')
+
+  function clearErrorOutput () {
+    errorOutput.innerText = ''
+    errorOutput.style.opacity = 0
+  }
 
   function setOutput (output, value) {
     window.location.hash = value
@@ -64,8 +70,15 @@ document.addEventListener('DOMContentLoaded', () => {
       multibaseOutput.innerHTML = toDefinitionList({code: data.multibase.code, name: data.multibase.name})
       multicodecOutput.innerHTML = toDefinitionList({code: data.multicodec.code, name: data.multicodec.name})
       multihashOutput.innerHTML = toDefinitionList({code: data.multihash.code, name: data.multihash.name, bits: data.multihash.length * 8})
+      clearErrorOutput()
     } catch (err) {
-      console.log(err)
+      if (!value) {
+        clearErrorOutput()
+      } else {
+        console.log(err.message || err)
+        errorOutput.innerText = err.message || err
+        errorOutput.style.opacity = 1
+      }
     }
   }
   if (input.value) {

@@ -16,12 +16,13 @@
     <h1 class='aqua fw2 montserrat dib ma0 pv2 ph1 v-mid fr f3 lh-copy'>CID inspector</h1>
   </header>
   <section class='pv4 pl2 pl5-l'>
-    <div class='pt2 measure-wide cf'>
+    <div class='pt2 measure-wide cf pr2 pr0-l'>
       <a class='gray hover-aqua link underline fr' href="https://github.com/ipld/cid">Spec</a>
       <label for="input-cid" class='db pb2 w-100 fw2 tracked ttu f5 teal'>CID</label>
-      <input id="input-cid" type="text" class='db w-100 ph1 pv2 monospace'>
+      <input id="input-cid" type="text" class='db w-100 ph1 pv2 monospace input-reset ba b--black-20 border-box' />
     </div>
-    <div class='pt4'>
+    <small id="input-error" class="db yellow f6 pt1 overflow-x-auto" style="opacity: 0; min-height:20px;"></small>
+    <div class='pt3'>
       <label class='db'>
         <a class='fw2 tracked ttu f5 teal-muted hover-aqua link' href='https://github.com/ipld/cid#human-readable-cids'>
           Human readable CID
