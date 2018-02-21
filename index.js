@@ -1,43 +1,73 @@
 const CID = require('cids')
+const varint = require('varint')
 const multihash = require('multihashes')
-// const multibase = require('multibase')
-const multibases = require('multibase/src/constants')
+const multibaseConstants = require('multibase/src/constants')
+const mutlicodecVarintTable = require('multicodec/src/varint-table')
 
-function decodeCID (inputCid) {
-  const decoded = new CID(inputCid)
-  return decoded.toJSON()
+// cidv0 ::= <multihash-content-address>
+// QmRds34t1KFiatDY6yJFj8U9VPTLvSMsR63y7qdUV3RMmT
+// <cidv1> ::= <multibase-prefix><cid-version><multicodec-content-type><multihash-content-address>
+// zb2rhiVd5G2DSpnbYtty8NhYHeDvNkPxjSqA7YbDPuhdihj9L
+function decodeCID (value) {
+  const cid = new CID(value).toJSON()
+  if (cid.version === 0) {
+    return decodeCidV0(value, cid)
+  }
+  if (cid.version === 1) {
+    return decodeCidV1(value, cid)
+  }
+  throw new Error('Unknown CID version', cid.version, cid)
+}
+
+function decodeCidV0 (value, cid) {
+  return {
+    cid,
+    multibase: {
+      name: 'base58btc',
+      code: 'implicit'
+    },
+    multicodec: {
+      name: cid.codec,
+      code: 'implicit'
+    },
+    multihash: multihash.decode(cid.hash)
+  }
+}
+
+function decodeCidV1 (value, cid) {
+  return {
+    cid,
+    multibase: multibaseConstants.codes[value.substring(0, 1)],
+    multicodec: {
+      name: cid.codec,
+      code: '0x' + mutlicodecVarintTable[cid.codec].toString('hex')
+    },
+    multihash: multihash.decode(cid.hash)
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   const output = document.querySelector('#cid')
   const input = document.querySelector('#input-cid')
   const multihashOutput = document.querySelector('#multihash')
+  const multicodecOutput = document.querySelector('#multicodec')
   const multibaseOutput = document.querySelector('#multibase')
+  const humanReadableCidOutput = document.querySelector('#hr-cid')
 
   function setOutput (output, value) {
     window.location.hash = value
     try {
-      const cid = decodeCID(value)
-      // cidv0 ::= <multihash-content-address>
-      // QmRds34t1KFiatDY6yJFj8U9VPTLvSMsR63y7qdUV3RMmT
-      // <cidv1> ::= <multibase-prefix><cid-version><multicodec-packed-content-type><multihash-content-address>
-      // zb2rhiVd5G2DSpnbYtty8NhYHeDvNkPxjSqA7YbDPuhdihj9L
-      if (cid.version === 0) {
-        multibaseOutput.innerText = `Multibase: base58btc`
-      }
-      if (cid.version === 1) {
-        const code = value.substring(0, 1)
-        const multibaseCode = multibases.codes[code]
-        multibaseOutput.innerText = `Multibase: ${multibaseCode.name}`
-      }
-      const mh = multihash.decode(cid.hash)
-      output.innerText = `Codec: ${cid.codec} Version: ${cid.version}`
-      multihashOutput.innerText = `Code: ${mh.code} Hash Function: ${mh.name} Length: ${mh.length}`
+      const data = decodeCID(value.trim())
+      console.log(data)
+      const hrCid = `${data.multibase.name} - cidv${data.cid.version} - ${data.cid.codec} - ${data.multihash.name}-${data.multihash.length * 8}-${data.multihash.digest.toString('hex')}`
+      humanReadableCidOutput.innerText = hrCid
+      multibaseOutput.innerHTML = toDefinitionList({code: data.multibase.code, name: data.multibase.name})
+      multicodecOutput.innerHTML = toDefinitionList({code: data.multicodec.code, name: data.multicodec.name})
+      multihashOutput.innerHTML = toDefinitionList({code: data.multihash.code, name: data.multihash.name, bits: data.multihash.length * 8})
     } catch (err) {
-      output.innerText = err
+      console.log(err)
     }
   }
-
   if (input.value) {
     setOutput(output, input.value.trim())
   }
@@ -49,3 +79,17 @@ document.addEventListener('DOMContentLoaded', () => {
     setOutput(output, ev.target.value.trim())
   })
 })
+
+function toDefinitionList (obj) {
+  const keys = Object.keys(obj)
+  const html = `
+    <dl class='tl ma0 pa0'>
+      ${ keys.map(k => `
+        <div class='pb1'>
+          <dt class='dib pr2 gray monospace'>${k}:</dt>
+          <dd class='dib ma0 pa0 fw5'>${obj[k]}</dd>
+        </div>`).join('') }
+    </dl>
+  `
+  return html
+}

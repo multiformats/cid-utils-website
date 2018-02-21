@@ -1,22 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>CID: Content-address Identifiers</title>
+  <meta name="description" content="Convert IPFS CIDs into human-readable from">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="./main.css">
 </head>
-<body>
-  <div>
-    <label for="input-cid">Input CID</label>
-    <input id="input-cid" type="text">
-  </div>
-  <div>
-    <div><strong>Multihash:</strong></div>
-    <div id="multihash"></div>
-    <div><strong>Multibase:</strong></div>
-    <div id="multibase"></div>
-    <div><strong>CID:</strong></div>
-    <div id="cid"></div>
-  </div>
+<body class='sans-serif'>
+  <header class='pv3 ph2 ph3-l bg-navy cf'>
+    <a href="https://multiformats.io/" title='ipfs.io'>
+      <img src="https://ipfs.io/images/ipfs-logo.svg" class='v-mid' style='height:50px' />
+    </a>
+    <h1 class='aqua fw2 montserrat dib ma0 pv2 ph1 v-mid fr f3 lh-copy'>CID inspector</h1>
+  </header>
+  <section class='pv4 pl2 pl5-l'>
+    <div class='pt2 measure-wide cf'>
+      <a class='gray hover-aqua link underline fr' href="https://github.com/ipld/cid">Spec</a>
+      <label for="input-cid" class='db pb2 w-100 fw2 tracked ttu f5 teal'>CID</label>
+      <input id="input-cid" type="text" class='db w-100 ph1 pv2 monospace'>
+    </div>
+    <div class='pt4'>
+      <label class='db'>
+        <a class='fw2 tracked ttu f5 teal-muted hover-aqua link' href='https://github.com/ipld/cid#human-readable-cids'>
+          Human readable CID
+        </a>
+      </label>
+      <pre class='f5 sans-serif fw5 ma0 pv2 dib overflow-x-auto w-100' id="hr-cid"></pre>
+      <div class='f5 sans-serif fw2 ma0 gray ttu f7 tracked'>multibase - version -  multicodec - multihash</div>
+      <div class='dn' id="cid" ></div>
+    </div>
+    <div class='pt4'>
+      <label class='db'>
+        <a class='pb1 w-100 fw2 tracked ttu f6 teal-muted hover-aqua link' href="https://github.com/multiformats/multibase">
+          Multibase
+        </a>
+      </label>
+      <div class='f5 sans-serif ma0 fw4 pt2'id="multibase"></div>
+    </div>
+    <div class='pt4'>
+      <label clas='db'>
+        <a class='pb1 w-100 fw2 tracked ttu f6 teal-muted hover-aqua link' href="https://github.com/multiformats/multicodec">
+          Multicodec
+        </a>
+      </label>
+      <div class='f5 sans-serif ma0 fw4 pt2'id="multicodec"></div>
+    </div>
+    <div class='pt4'>
+      <label class='dib'>
+        <a class='db pb1 w-100 fw2 tracked ttu f6 teal-muted hover-aqua link' href="https://github.com/multiformats/multihash">
+          Multihash
+        </a>
+      </label>
+      <div class='f5 sans-serif ma0 fw4 pt2'id="multihash"></div>
+    </div>
+  </section>
+  <footer class='mt2 pv2 ph2 ph3-l bt b--light-gray'>
+    <a href="https://multiformats.io/" title='Multiformats' class='dib v-mid'>
+      <img src="https://multiformats.io/logo.svg"  style='height:50px' />
+    </a>
+    <a href="https://ipld.io" title="Interplanetary Linked Data" class='dib v-mid'>
+      <img src="https://ipld.io/img/ipld-tree.svg" style='height:40px' />
+    </a>
+  </footer>
   <script src="./index.js"></script>
 </body>
 </html>
