@@ -34,6 +34,11 @@ function decodeCidV0 (value, cid) {
   }
 }
 
+function toBase32(value) {
+  var cid = new CID(value)
+  return cid.toV1().toBaseEncodedString('base32')
+}
+
 function decodeCidV1 (value, cid) {
   return {
     cid,
@@ -52,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const multihashOutput = document.querySelector('#multihash')
   const multicodecOutput = document.querySelector('#multicodec')
   const multibaseOutput = document.querySelector('#multibase')
+  const base32CidV1Output = document.querySelector('#base32cidv1')
   const humanReadableCidOutput = document.querySelector('#hr-cid')
   const errorOutput = document.querySelector('#input-error')
 
@@ -70,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
       multibaseOutput.innerHTML = toDefinitionList({code: data.multibase.code, name: data.multibase.name})
       multicodecOutput.innerHTML = toDefinitionList({code: data.multicodec.code, name: data.multicodec.name})
       multihashOutput.innerHTML = toDefinitionList({code: data.multihash.code, name: data.multihash.name, bits: data.multihash.length * 8})
+      base32CidV1Output.innerHTML = toBase32(value.trim())
       clearErrorOutput()
     } catch (err) {
       if (!value) {
