@@ -14,7 +14,7 @@
   "author": "Victor Bjelkholm",
   "license": "MIT",
   "dependencies": {
-    "cids": "^0.5.2",
+    "cids": "^0.5.3",
     "ipfs-css": "^0.2.0",
     "multibase": "^0.4.0",
     "multicodec": "^0.2.6",
