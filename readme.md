@@ -4,17 +4,32 @@
 
 A website for decoding CIDs
 
-- build: `npm run build`
-- dev: `npm run dev`
-- add to ipfs: `npm run deploy`
+## Getting started
 
-Linux users: If you see `Error: ENOSPC: no space left on device` errors, crank up your max inotify watches:
+With node and npm installed, clone the repo and run:
 
-```
-sysctl -w fs.inotify.max_user_watches=524288
-echo "fs.inotify.max_user_watches=524288" >>/etc/sysctl.conf
+```console
+npm i
 ```
 
----
+To start the hot-code-reloading dev server:
+
+```console
+npm start
+```
+
+To build the optimized static website to the `dist` folder:
+
+```console
+npm run build
+```
+
+To add the `dist` folder to your local ipfs repo and print the root CID:
+
+```console
+npm run deploy
+```
+
+## License
 
 License MIT 2018
