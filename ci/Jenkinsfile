@@ -1,5 +1,0 @@
-website([
-  website: 'ipfs.team',
-  record: 'cid-utils',
-  build_directory: 'dist/'
-])
