@@ -8,19 +8,19 @@
     "start": "parcel index.html",
     "build": "parcel build index.html --public-url '.'",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "ipfs add -r --quieter dist"
+    "deploy": "ipfs add -r --cid-version 1 --quieter dist"
   },
   "keywords": [],
   "author": "Victor Bjelkholm",
   "license": "MIT",
   "dependencies": {
-    "cids": "^0.5.3",
-    "ipfs-css": "^0.2.0",
-    "multibase": "^0.4.0",
-    "multicodec": "^0.2.6",
-    "multihashes": "^0.4.13",
-    "parcel-bundler": "^1.6.2",
-    "tachyons": "^4.9.1",
+    "cids": "^0.7.1",
+    "ipfs-css": "^0.13.1",
+    "multibase": "^0.6.0",
+    "multicodec": "^0.5.5",
+    "multihashes": "^0.4.15",
+    "parcel-bundler": "^1.12.3",
+    "tachyons": "^4.11.1",
     "varint": "^5.0.0"
   }
 }
