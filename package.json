@@ -14,9 +14,9 @@
   "author": "Victor Bjelkholm",
   "license": "MIT",
   "dependencies": {
-    "cids": "^0.8.1",
+    "cids": "https://github.com/ipld/js-cid/tarball/ea5a7f21c0d7c5d692577924a22b9deb86815de3/js-cid.tar.gz",
     "ipfs-css": "^1.1.0",
-    "multibase": "^0.7.0",
+    "multibase": "^1.0.0",
     "multicodec": "^1.0.1",
     "multihashes": "^0.4.19",
     "parcel-bundler": "^1.12.4",
