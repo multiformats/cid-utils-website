@@ -14,11 +14,11 @@
   "author": "Victor Bjelkholm",
   "license": "MIT",
   "dependencies": {
-    "cids": "~0.8.2",
+    "cids": "~0.8.3",
     "ipfs-css": "^1.1.0",
-    "multibase": "^1.0.0",
-    "multicodec": "^1.0.1",
-    "multihashes": "^0.4.19",
+    "multibase": "^1.0.1",
+    "multicodec": "^1.0.4",
+    "multihashes": "^1.0.1",
     "parcel-bundler": "^1.12.4",
     "tachyons": "^4.12.0",
     "varint": "^5.0.0"
