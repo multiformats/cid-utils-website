@@ -4,6 +4,9 @@ const multihash = require('multihashes')
 const multibaseConstants = require('multibase/src/constants')
 const mutlicodecVarintTable = require('multicodec/src/varint-table')
 
+// Label's max length in DNS (https://tools.ietf.org/html/rfc1034#page-7)
+const dnsLabelMaxLength = 63
+
 // cidv0 ::= <multihash-content-address>
 // QmRds34t1KFiatDY6yJFj8U9VPTLvSMsR63y7qdUV3RMmT
 // <cidv1> ::= <multibase-prefix><cid-version><multicodec-content-type><multihash-content-address>
@@ -39,6 +42,15 @@ function toBase32(value) {
   return cid.toV1().toBaseEncodedString('base32')
 }
 
+function toDNSPrefix(value) {
+  const cid = new CID(value)
+  const cidb32 = cid.toV1().toBaseEncodedString('base32')
+  if (cidb32.length <= dnsLabelMaxLength) return cidb32
+  const cidb36 = cid.toV1().toBaseEncodedString('base36')
+  if (cidb36.length <= dnsLabelMaxLength) return cidb36
+  return 'CID incompatible with DNS label length limit of 63'
+}
+
 function decodeCidV1 (value, cid) {
   return {
     cid,
@@ -58,6 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const multicodecOutput = document.querySelector('#multicodec')
   const multibaseOutput = document.querySelector('#multibase')
   const base32CidV1Output = document.querySelector('#base32cidv1')
+  const dns = document.querySelector('#dns')
+  const dnsCidV1Output = document.querySelector('#dnscidv1')
   const humanReadableCidOutput = document.querySelector('#hr-cid')
   const errorOutput = document.querySelector('#input-error')
 
@@ -76,7 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
       multibaseOutput.innerHTML = toDefinitionList({code: data.multibase.code, name: data.multibase.name})
       multicodecOutput.innerHTML = toDefinitionList({code: data.multicodec.code, name: data.multicodec.name})
       multihashOutput.innerHTML = toDefinitionList({code: data.multihash.code, name: data.multihash.name, bits: data.multihash.length * 8})
-      base32CidV1Output.innerHTML = toBase32(value.trim())
+
+      const cidb32 = toBase32(value.trim())
+      base32CidV1Output.innerHTML = cidb32
+      const dnsPrefix = toDNSPrefix(value.trim())
+      dns.style.visibility = cidb32 !== dnsPrefix ? 'visible' : 'hidden'
+      dnsCidV1Output.innerHTML = dnsPrefix
+
       clearErrorOutput()
     } catch (err) {
       if (!value) {
