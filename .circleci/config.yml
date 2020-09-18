@@ -2,7 +2,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:10.15.1
+      - image: circleci/node:12.16.2-browsers-legacy
+        environment:
+          NO_SANDBOX: true
     steps:
       - checkout
       - run:
@@ -33,7 +35,6 @@ jobs:
 
             echo "Website added to IPFS: https://ipfs.io/ipfs/$hash"
 
-            # Update DNSlink for prod or dev domain
             if [ "$CIRCLE_BRANCH" == "master" ] ; then
               dnslink-dnsimple -d $DOMAIN -r _dnslink -l /ipfs/$hash
             fi
