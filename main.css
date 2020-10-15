@@ -1,2 +1,6 @@
 @import 'tachyons';
 @import 'ipfs-css';
+
+#outputs {
+  opacity: 0;
+}

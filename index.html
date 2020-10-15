@@ -13,7 +13,7 @@
   <header class="flex-ns items-center pt3 pb2 ph3 bg-navy bb bw3 border-aqua tc justify-between">
     <div>
       <a href="https://ipfs.io/" title="Visit ipfs.io">
-        <img src="https://ipfs.io/images/ipfs-logo.svg" style='height:50px' />
+        <img src="assets/ipfs_logo.svg" style='height:50px' />
       </a>
     </div>
   <div class='pb1 ma0 inline-flex items-center'>
@@ -30,11 +30,13 @@
   <section class='pv4 pl2 pl5-l'>
     <div class='pt2 measure-wide cf pr2 pr0-l'>
       <a class='gray hover-aqua link underline fr ml3' href="https://proto.school/#/anatomy-of-a-cid">Tutorial</a>
-      <a class='gray hover-aqua link underline fr' href="https://github.com/ipld/cid">Spec</a>
+      <a class='gray hover-aqua link underline fr ml3' href="https://github.com/ipld/cid">Spec</a>
+      <a class='gray hover-aqua link underline fr' href="https://docs.ipfs.io/concepts/content-addressing/#identifier-formats">Docs</a>
       <label for="input-cid" class='db pb2 w-100 tracked ttu f5 teal'>CID</label>
       <input id="input-cid" type="text" class='db w-100 ph1 pv2 monospace input-reset ba b--black-20 border-box' />
     </div>
     <small id="input-error" class="db yellow f6 pt1 overflow-x-auto" style="opacity: 0; min-height:20px;"></small>
+    <div id="outputs">
     <div class='pt3'>
       <label class='db'>
         <a class='tracked ttu f5 teal-muted hover-aqua link' href='https://github.com/ipld/cid#human-readable-cids'>
@@ -85,16 +87,17 @@
       </label>
       <div class='f5 monospace ma0 fw4 pt2' id="dnscidv1"></div>
     </div>
+    </div>
   </section>
   <footer class='mt2 pv2 ph2 ph3-l bt b--light-gray'>
     <a href="https://multiformats.io/" title='Multiformats' class='dib v-mid'>
-      <img src="https://multiformats.io/logo.svg"  style='height:50px' />
+      <img src="assets/multiformats_logo.svg"  style='height:50px' />
     </a>
     <a href="https://ipld.io" title="Interplanetary Linked Data" class='dib v-mid'>
-      <img src="https://ipld.io/img/ipld-tree.svg" style='height:40px' />
+      <img src="assets/ipld_logo.svg" style='height:40px' />
     </a>
     <a href="https://proto.school/#/anatomy-of-a-cid" title="ProtoSchool" class='dib v-mid pl1'>
-      <img src="/protoschool_logo.svg" style='height:40px' />
+      <img src="assets/protoschool_logo.svg" style='height:40px' />
     </a>
   </footer>
   <script src="./index.js"></script>

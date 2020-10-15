@@ -65,6 +65,7 @@ function decodeCidV1 (value, cid) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const output = document.querySelector('#cid')
+  const details = document.querySelector('#outputs')
   const input = document.querySelector('#input-cid')
   const multihashOutput = document.querySelector('#multihash')
   const multicodecOutput = document.querySelector('#multicodec')
@@ -98,7 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
       dnsCidV1Output.innerHTML = dnsPrefix
 
       clearErrorOutput()
+      details.style.opacity = 1
     } catch (err) {
+      details.style.opacity = 0
       if (!value) {
         clearErrorOutput()
       } else {
