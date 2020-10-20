@@ -130,7 +130,7 @@ function toDefinitionList (obj) {
       ${ keys.map(k => `
         <div class='pb1'>
           <dt class='dib pr2 sans-serif charcoal-muted ttu f7 tracked'>${k}:</dt>
-          <dd class='dib ma0 pa0 fw5'>${obj[k]}</dd>
+          <dd class='dib ma0 pa0 fw5 overflow-x-auto overflow-y-hidden w-100'>${obj[k]}</dd>
         </div>`).join('') }
     </dl>
   `
