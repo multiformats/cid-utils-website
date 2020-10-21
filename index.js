@@ -1,5 +1,4 @@
 const CID = require('cids')
-const varint = require('varint')
 const multihash = require('multihashes')
 const multibaseConstants = require('multibase/src/constants')
 const mutlicodecVarintTable = require('multicodec/src/varint-table')
@@ -65,6 +64,7 @@ function decodeCidV1 (value, cid) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const output = document.querySelector('#cid')
+  const details = document.querySelector('#outputs')
   const input = document.querySelector('#input-cid')
   const multihashOutput = document.querySelector('#multihash')
   const multicodecOutput = document.querySelector('#multicodec')
@@ -85,11 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const data = decodeCID(value.trim())
       console.log(data)
-      const hrCid = `${data.multibase.name} - cidv${data.cid.version} - ${data.cid.codec} - ${data.multihash.name}-${data.multihash.length * 8}-${data.multihash.digest.toString('hex')}`
+      const multihashDigestInHex = multihash.toHexString(data.multihash.digest).toUpperCase()
+      const hrCid = `${data.multibase.name} - cidv${data.cid.version} - ${data.cid.codec} - (${data.multihash.name} : ${data.multihash.length * 8} : ${multihashDigestInHex})`
       humanReadableCidOutput.innerText = hrCid
       multibaseOutput.innerHTML = toDefinitionList({code: data.multibase.code, name: data.multibase.name})
       multicodecOutput.innerHTML = toDefinitionList({code: data.multicodec.code, name: data.multicodec.name})
-      multihashOutput.innerHTML = toDefinitionList({code: data.multihash.code, name: data.multihash.name, bits: data.multihash.length * 8})
+      multihashOutput.innerHTML = toDefinitionList({code: data.multihash.code, name: data.multihash.name, bits: data.multihash.length * 8, 'digest (hex)': multihashDigestInHex})
 
       const cidb32 = toBase32(value.trim())
       base32CidV1Output.innerHTML = cidb32
@@ -98,7 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
       dnsCidV1Output.innerHTML = dnsPrefix
 
       clearErrorOutput()
+      details.style.opacity = 1
     } catch (err) {
+      details.style.opacity = 0
       if (!value) {
         clearErrorOutput()
       } else {
@@ -126,8 +129,8 @@ function toDefinitionList (obj) {
     <dl class='tl ma0 pa0'>
       ${ keys.map(k => `
         <div class='pb1'>
-          <dt class='dib pr2 gray monospace'>${k}:</dt>
-          <dd class='dib ma0 pa0 fw5'>${obj[k]}</dd>
+          <dt class='dib pr2 sans-serif charcoal-muted ttu f7 tracked'>${k}:</dt>
+          <dd class='dib ma0 pa0 fw5 overflow-x-auto overflow-y-hidden w-100'>${obj[k]}</dd>
         </div>`).join('') }
     </dl>
   `
