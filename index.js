@@ -1,7 +1,7 @@
 const CID = require('cids')
 const multihash = require('multihashes')
+const multicodecLib = require('multicodec')
 const multibaseConstants = require('multibase/src/constants')
-const mutlicodecVarintTable = require('multicodec/src/varint-table')
 
 // Label's max length in DNS (https://tools.ietf.org/html/rfc1034#page-7)
 const dnsLabelMaxLength = 63
@@ -56,7 +56,7 @@ function decodeCidV1 (value, cid) {
     multibase: multibaseConstants.codes[value.substring(0, 1)],
     multicodec: {
       name: cid.codec,
-      code: '0x' + mutlicodecVarintTable[cid.codec].toString('hex')
+      code: '0x' + multicodecLib.getNumber(cid.codec).toString(16)
     },
     multihash: multihash.decode(cid.hash)
   }
