@@ -56,10 +56,25 @@ function decodeCidV1 (value, cid) {
     multibase: multibaseConstants.codes[value.substring(0, 1)],
     multicodec: {
       name: cid.codec,
-      code: '0x' + multicodecLib.getNumber(cid.codec).toString(16)
+      code: multicodecLib.getNumber(cid.codec)
     },
     multihash: multihash.decode(cid.hash)
   }
+}
+
+// Converts number to format of 'code' column
+// at https://github.com/multiformats/multicodec/blob/master/table.csv
+function paddedCodeHex (code) {
+  let n = code
+  if (typeof code !== 'number') {
+    n = Number(code)
+    if (isNaN(n)) return code // eg. 'implicit' in CIDv0
+  }
+  let hex = n.toString(16)
+  if (hex.length % 2 !== 0) {
+    hex = `0${hex}`
+  }
+  return `0x${hex}`
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -88,9 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const multihashDigestInHex = multihash.toHexString(data.multihash.digest).toUpperCase()
       const hrCid = `${data.multibase.name} - cidv${data.cid.version} - ${data.cid.codec} - (${data.multihash.name} : ${data.multihash.length * 8} : ${multihashDigestInHex})`
       humanReadableCidOutput.innerText = hrCid
-      multibaseOutput.innerHTML = toDefinitionList({code: data.multibase.code, name: data.multibase.name})
-      multicodecOutput.innerHTML = toDefinitionList({code: data.multicodec.code, name: data.multicodec.name})
-      multihashOutput.innerHTML = toDefinitionList({code: data.multihash.code, name: data.multihash.name, bits: data.multihash.length * 8, 'digest (hex)': multihashDigestInHex})
+      multibaseOutput.innerHTML = toDefinitionList({prefix: data.multibase.code, name: data.multibase.name})
+      multicodecOutput.innerHTML = toDefinitionList({code: paddedCodeHex(data.multicodec.code), name: data.multicodec.name})
+      multihashOutput.innerHTML = toDefinitionList({code: paddedCodeHex(data.multihash.code), name: data.multihash.name, bits: data.multihash.length * 8, 'digest (hex)': multihashDigestInHex})
 
       const cidb32 = toBase32(value.trim())
       base32CidV1Output.innerHTML = cidb32
