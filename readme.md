@@ -1,6 +1,6 @@
 # IPFS CID Inspector
 
-<img alt="CID Inspector screenshot" src="https://gateway.ipfs.io/ipfs/QmfEXQC3RktNYZt1YAo91Vse5S3DWQ7AS9BbsZ9Y5ruqmp">
+<img alt="CID Inspector screenshot" src="https://gateway.ipfs.io/ipfs/QmehVjDE5yAZC8TjqcqrQYpYj2hoBMFVCFUNKe21jEMY3Z">
 
 A website for decoding CIDs
 
