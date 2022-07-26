@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         code: paddedCodeHex(data.multihash.code),
         name: data.multihash.name,
         bits: data.multihash.size * 8,
+        'base encoded': data.multibase.encode(data.multihash.bytes),
         'digest (hex)': multihashDigestInHex
       })
 
