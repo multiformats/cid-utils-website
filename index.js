@@ -1,15 +1,11 @@
 import { CID } from 'multiformats/cid'
-import { hashes, bases } from 'multiformats/basics'
+import { bases } from 'multiformats/basics'
 import { toString as uint8ArrayToString } from 'uint8arrays/to-string'
 import runes from 'runes2'
+import codecs from './codecs.json'
 
 // Label's max length in DNS (https://tools.ietf.org/html/rfc1034#page-7)
 const dnsLabelMaxLength = 63
-
-const hashesCodeToName = Object.keys(hashes).reduce((acc, curr) => {
-  acc[hashes[curr].code] = hashes[curr].name
-  return acc
-}, {})
 
 const basesByPrefix = Object.keys(bases).reduce((acc, curr) => {
   acc[bases[curr].prefix] = bases[curr]
@@ -30,14 +26,11 @@ function decodeCID (value) {
     multibase: cid.version === 0 ? {
       name: 'base58btc',
       prefix: 'implicit'
-    } : basesByPrefix[prefix],
-    multicodec: {
-      name: 'TODO: Get Name From Code',
-      code: cid.code
-    },
+    } : base,
+    multicodec: codecs[cid.code],
     multihash: {
       ...cid.multihash,
-      name: hashesCodeToName[cid.multihash.code]
+      name: codecs[cid.multihash.code].name
     }
   }
 }
@@ -89,14 +82,30 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = decodeCID(value.trim())
       console.log(data)
       const multihashDigestInHex = uint8ArrayToString(data.multihash.digest, 'base16').toUpperCase()
-      const hrCid = `${data.multibase.name} - cidv${data.cid.version} - ${data.cid.code /* TODO:NAME */} - (${data.multihash.name} : ${data.multihash.size * 8} : ${multihashDigestInHex})`
+      const hrCid = `${data.multibase.name} - cidv${data.cid.version} - ${data.multicodec.name} - (${data.multihash.name} : ${data.multihash.size * 8} : ${multihashDigestInHex})`
       humanReadableCidOutput.innerText = hrCid
-      multibaseOutput.innerHTML = toDefinitionList({prefix: data.multibase.prefix, name: data.multibase.name})
-      multicodecOutput.innerHTML = toDefinitionList({code: paddedCodeHex(data.multicodec.code), name: data.multicodec.name})
-      multihashOutput.innerHTML = toDefinitionList({code: paddedCodeHex(data.multihash.code), name: data.multihash.name, bits: data.multihash.size * 8, 'digest (hex)': multihashDigestInHex})
+
+      multibaseOutput.innerHTML = toDefinitionList({
+        prefix: data.multibase.prefix,
+        name: data.multibase.name
+      })
+
+      multicodecOutput.innerHTML = toDefinitionList({
+        code: paddedCodeHex(data.multicodec.code),
+        name: data.multicodec.name, description:
+        data.multicodec.description
+      })
+
+      multihashOutput.innerHTML = toDefinitionList({
+        code: paddedCodeHex(data.multihash.code),
+        name: data.multihash.name,
+        bits: data.multihash.size * 8,
+        'digest (hex)': multihashDigestInHex
+      })
 
       const cidb32 = data.cid.toV1().toString()
       base32CidV1Output.innerHTML = cidb32
+
       const dnsPrefix = toDNSPrefix(data.cid)
       dns.style.visibility = cidb32 !== dnsPrefix ? 'visible' : 'hidden'
       dnsCidV1Output.innerHTML = dnsPrefix
@@ -108,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!value) {
         clearErrorOutput()
       } else {
-        console.log(err.message || err)
+        console.error(err.message || err)
         errorOutput.innerText = err.message || err
         errorOutput.style.opacity = 1
       }
@@ -118,8 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setOutput(output, input.value.trim())
   }
   if (window.location.hash !== '') {
-    setOutput(output, decodeURIComponent(window.location.hash.substring(1)))
-    input.value = decodeURIComponent(window.location.hash.substring(1))
+    const value = decodeURIComponent(window.location.hash.substring(1))
+    setOutput(output, value)
+    input.value = value
   }
   input.addEventListener('keyup', (ev) => {
     setOutput(output, ev.target.value.trim())

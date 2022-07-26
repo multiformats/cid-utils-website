@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Website for decoding CIDs",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "clean": "rm -rf dist/*",
     "start": "parcel index.html",
@@ -21,5 +22,8 @@
     "runes2": "^0.4.16",
     "tachyons": "^4.12.0",
     "uint8arrays": "^3.0.0"
+  },
+  "devDependencies": {
+    "node-fetch": "^3.2.9"
   }
 }
