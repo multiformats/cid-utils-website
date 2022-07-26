@@ -2,13 +2,12 @@
   "name": "cid-utils-website",
   "version": "1.0.0",
   "description": "Website for decoding CIDs",
-  "main": "index.js",
   "type": "module",
   "scripts": {
     "clean": "rm -rf dist/*",
     "start": "parcel index.html",
     "build": "parcel build index.html --public-url '.'",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "patch-package",
     "deploy": "ipfs add -r --cid-version 1 --quieter dist"
   },
   "keywords": [],
@@ -18,12 +17,13 @@
   "dependencies": {
     "ipfs-css": "^1.3.0",
     "multiformats": "^9.7.1",
-    "parcel-bundler": "^1.12.4",
     "runes2": "^0.4.16",
     "tachyons": "^4.12.0",
     "uint8arrays": "^3.0.0"
   },
   "devDependencies": {
-    "node-fetch": "^3.2.9"
+    "node-fetch": "^3.2.9",
+    "parcel": "^2.6.2",
+    "patch-package": "^6.4.7"
   }
 }
