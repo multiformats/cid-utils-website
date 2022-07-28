@@ -23,10 +23,7 @@ function decodeCID (value) {
 
   return {
     cid,
-    multibase: cid.version === 0 ? {
-      name: 'base58btc',
-      prefix: 'implicit'
-    } : base,
+    multibase: cid.version === 0 ? bases.base58btc : base,
     multicodec: codecs[cid.code],
     multihash: {
       ...cid.multihash,
@@ -86,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       humanReadableCidOutput.innerText = hrCid
 
       multibaseOutput.innerHTML = toDefinitionList({
-        prefix: data.multibase.prefix,
+        prefix: data.cid.version == 0 ? 'implicit' : data.multibase.prefix,
         name: data.multibase.name
       })
 
