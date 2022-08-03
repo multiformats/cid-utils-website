@@ -56,6 +56,19 @@ function paddedCodeHex (code) {
   return `0x${hex}`
 }
 
+function normalizeUrl() {
+  // normalize to .tech tld:
+  // https://github.com/protocol/bifrost-infra/issues/2018#issue-1319432302
+  const { href } = window.location
+  if (href.includes('cid.ipfs.io')) {
+    window.location.replace(href.replace('cid.ipfs.io', 'cid.ipfs.tech'))
+  }
+  if (href.includes('cid-ipfs-io')) {
+    window.location.replace(href.replace('cid-ipfs-io', 'cid-ipfs-tech'))
+  }
+
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const output = document.querySelector('#cid')
   const details = document.querySelector('#outputs')
@@ -139,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
   input.addEventListener('keyup', (ev) => {
     setOutput(output, ev.target.value.trim())
   })
+  normalizeUrl()
 })
 
 function toDefinitionList (obj) {
