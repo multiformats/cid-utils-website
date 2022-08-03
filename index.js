@@ -1,5 +1,6 @@
 import { CID } from 'multiformats/cid'
 import { bases } from 'multiformats/basics'
+import PeerId from 'peer-id'
 import { toString as uint8ArrayToString } from 'uint8arrays/to-string'
 import runes from 'runes2'
 import codecs from './codecs.json'
@@ -115,6 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!value) {
         clearErrorOutput()
       } else {
+        try {
+          const peerId = PeerId.createFromB58String(value)
+          const { cid } = decodeCID(peerId.toString())
+          const peerIdCid = cid.toV1().toString(bases.base32)
+          err = new Error(`The value is a Peer ID. Try using its CID representation: ${peerIdCid}`)
+        } catch (_) {  }
         console.error(err.message || err)
         errorOutput.innerText = err.message || err
         errorOutput.style.opacity = 1
