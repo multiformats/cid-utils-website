@@ -118,7 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         try {
           const peerId = PeerId.createFromB58String(value)
-          err = new Error(`The entered value is a Peer ID. Its CIDv1 you can use for further inspection is ${peerId.toString()}`)
+          const { cid } = decodeCID(peerId.toString())
+          const peerIdCid = cid.toV1().toString(bases.base32)
+          err = new Error(`The value is a Peer ID. Try using its CID representation: ${peerIdCid}`)
         } catch (_) {  }
         console.error(err.message || err)
         errorOutput.innerText = err.message || err
