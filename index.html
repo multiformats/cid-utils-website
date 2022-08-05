@@ -44,24 +44,72 @@
         </a>
       </label>
       <pre class='f5 sans-serif fw5 ma0 pv2 dib overflow-x-auto w-100' id="hr-cid"></pre>
-      <div class='f5 sans-serif ma0 charcoal-muted ttu f7 tracked'>multibase - version -  multicodec - multihash (name : size : digest in hex)</div>
+      <div class='f5 sans-serif ma0 charcoal-muted ttu f6 tracked'>multibase - version -  multicodec - multihash (name : size : digest in hex)</div>
       <div class='dn' id="cid" ></div>
+      <span>
+        <p class='f5 sans-serif ma0 charcoal-muted ttu f7 tracked'>
+        </br> string: base (base)(cid-version - multicodec - multihash)
+        </br> binary: cid_version - multicodec - multihash
+        </p>
+      </span>
     </div>
     <div class='pt4'>
       <label class='db'>
         <a class='pb1 w-100 tracked ttu f6 teal-muted hover-aqua link' href="https://github.com/multiformats/multibase">
           Multibase
         </a>
+       </br>
       </label>
+      <p class='f5 sans-serif ma0 charcoal-muted fw4 pt2'>
+       </br>Self-describing data model for expressing raw binary
+       </br>data in a variety of base-encoding formats.
+     </p>
       <div class='f5 sans-serif ma0 fw4 pt2'id="multibase"></div>
+      <span>
+        <p class='f5 sans-serif ma0 charcoal-muted fw4 pt2'>
+          format: "base-encoding character - base-encoded name"
+        </br>
+        </br> > The base-encoding character prefix is a char that represents 
+        </br>the encoding method based on the
+        <a class='f5 sans-serif ma0 charcoal-muted fw4 pt2' 
+        href="https://github.com/multiformats/multibase/blob/master/multibase.csv">
+        multibase table.
+        </a>
+        </br> > The base-encoded name prefix is the encoding scheme.
+        </br>
+        </br> > Only used in the string form of the CID.
+        </br> > In CIDv0, hashes are always encoded in base58btc.
+        </br> > base32 is used by most implementations of IPFS.
+        </p>
+      </span>
     </div>
     <div class='pt4'>
       <label clas='db'>
         <a class='pb1 w-100 tracked ttu f6 teal-muted hover-aqua link' href="https://github.com/multiformats/multicodec">
           Multicodec
         </a>
+      </br>
       </label>
+      <p class='f5 sans-serif ma0 charcoal-muted fw4 pt2'>
+        </br>Self-describing codecs used to decode the data retrieved from the lookup.
+        </br>Codecs are functions that can encode/decode into/from a data model, passed as strings.
+      </p>
       <div class='f5 sans-serif ma0 fw4 pt2'id="multicodec"></div>
+      <span>
+        <p class='f5 sans-serif ma0 charcoal-muted fw4 pt2'>
+          format: "code - name"
+        </br>
+        </br> > The code prefix is identifier of the codec, based on an an agreed-upon 
+        <a class='f5 sans-serif ma0 charcoal-muted fw4 pt2' 
+        href="https://ipfs.io/ipfs/QmXec1jjwzxWJoNbxQF5KffL8q6hFXm9QwUGaa3wKGk6dT/#title=Multicodecs&src=https://raw.githubusercontent.com/multiformats/multicodec/master/table.csv">
+        protocol table.
+        </a>
+        </br> > The name prefix is the encoding method, e.g. "dag-pb" is an IPLD codec.
+        </br>
+        </br> > Supports many types of encoding, each with their own codec identifier.
+        </br> > The multicodec prefix in an IPFS CID will always be an IPLD codec.
+        </p>
+        </span>
     </div>
     <div class='pt4'>
       <label class='dib'>
@@ -69,7 +117,25 @@
           Multihash
         </a>
       </label>
+      <p class='f5 sans-serif ma0 charcoal-muted fw4 pt2'>
+        </br>Self-describing hash; the original hash is prefixed
+        </br>with the type of cryptographic algorithm and length
+        </br>of the hash, represented as metadata.
+      </p>
       <div class='f5 sans-serif ma0 fw4 pt2'id="multihash"></div>
+      <span>
+        <p class='f5 sans-serif ma0 charcoal-muted fw4 pt2'>
+          format: "hash type - hash value"
+        </br>
+        </br> > The hash type prefix is the type of hashing algorithm used.
+        </br> > The hash value is the actual hash value.
+        </br>
+        </br> > Support multiple hashing algorithms.
+        </br> > The number of characters in the CID depends on the cryptographic
+        </br>   hash of the underlying content, rather than the content size.
+        </br> > Most CIDs will be 256bits or 32 bytes.
+        </p>
+        </span>
     </div>
     <div class='pt4'>
       <label class='dib'>
@@ -87,7 +153,7 @@
       </label>
       <div class='f5 monospace ma0 overflow-x-auto overflow-y-hidden fw4 pt2' id="dnscidv1"></div>
     </div>
-    </div>
+   </div>
   </section>
   <footer class='mt2 pv2 ph2 ph3-l bt b--light-gray'>
     <a href="https://multiformats.io/" title='Multiformats' class='dib v-mid'>
