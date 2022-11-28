@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const multicodecOutput = document.querySelector('#multicodec')
   const multibaseOutput = document.querySelector('#multibase')
   const base32CidV1Output = document.querySelector('#base32cidv1')
+  const cidByteLengthOutput = document.querySelector('#cidbytelength')
   const dns = document.querySelector('#dns')
   const dnsCidV1Output = document.querySelector('#dnscidv1')
   const humanReadableCidOutput = document.querySelector('#hr-cid')
@@ -117,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const cidb32 = data.cid.toV1().toString()
       base32CidV1Output.innerHTML = cidb32
+      cidByteLengthOutput.innerHTML = data.cid.byteLength
 
       const dnsPrefix = toDNSPrefix(data.cid)
       dns.style.visibility = cidb32 !== dnsPrefix ? 'visible' : 'hidden'
