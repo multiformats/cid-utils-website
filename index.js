@@ -77,6 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const multicodecOutput = document.querySelector('#multicodec')
   const multibaseOutput = document.querySelector('#multibase')
   const base32CidV1Output = document.querySelector('#base32cidv1')
+  const cidByteLengthBinOutput = document.querySelector('#cidbytelengthbin')
+  const cidByteLengthBase32Output = document.querySelector('#cidbytelengthbase32')
+  const inputByteLengthContainer = document.querySelector("#cid-input-byte-length")
+  const inputByteLengthLabel = document.querySelector('#cid-base-label')
+  const inputByteLength = document.querySelector('#cidbytelength-input')
   const dns = document.querySelector('#dns')
   const dnsCidV1Output = document.querySelector('#dnscidv1')
   const humanReadableCidOutput = document.querySelector('#hr-cid')
@@ -117,6 +122,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const cidb32 = data.cid.toV1().toString()
       base32CidV1Output.innerHTML = cidb32
+      cidByteLengthBinOutput.innerHTML = data.cid.byteLength
+      cidByteLengthBase32Output.innerHTML = new Blob([data.cid.toString()]).size
+
+      // Display the byte length of the input and hide if it's base32 (since it will always show)
+      inputByteLengthContainer.style.display = (data.multibase.name === 'base32') ? 'none' : 'block'
+      inputByteLengthLabel.innerHTML = "As " + data.multibase.name + " string (Bytes)"
+      inputByteLength.innerHTML = new Blob([value.trim()]).size
 
       const dnsPrefix = toDNSPrefix(data.cid)
       dns.style.visibility = cidb32 !== dnsPrefix ? 'visible' : 'hidden'
