@@ -4,6 +4,7 @@ import PeerId from 'peer-id'
 import { toString as uint8ArrayToString } from 'uint8arrays/to-string'
 import runes from 'runes2'
 import codecs from './codecs.json'
+import './telemetry.js'
 
 // Label's max length in DNS (https://tools.ietf.org/html/rfc1034#page-7)
 const dnsLabelMaxLength = 63
