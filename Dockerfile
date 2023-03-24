@@ -15,7 +15,7 @@ RUN echo $VERSION > /version
 
 COPY --from=0 source/dist/ /usr/share/nginx/html/
 # update custom nginx conf reason by vue-router
-COPY --from=0 source/default.conf /etc/nginx/conf.d/
+#COPY --from=0 source/default.conf /etc/nginx/conf.d/
 # run script
 COPY --from=0 source/entrypoint.sh /
 
