@@ -937,6 +937,13 @@
     "description": "Filecoin graphsync datatransfer",
     "code": 2320
   },
+  "4113": {
+    "name": "fr32-sha2-256-trunc254-padded-binary-tree",
+    "tag": "multihash",
+    "status": "draft",
+    "description": "A balanced binary tree hash used in Filecoin Piece Commitments.",
+    "code": 4113
+  },
   "4114": {
     "name": "sha2-256-trunc254-padded",
     "tag": "multihash",
