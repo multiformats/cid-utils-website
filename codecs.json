@@ -155,14 +155,14 @@
   },
   "34": {
     "name": "murmur3-x64-64",
-    "tag": "multihash",
+    "tag": "hash",
     "status": "permanent",
     "description": "The first 64-bits of a murmur3-x64-128 - used for UnixFS directory sharding.",
     "code": 34
   },
   "35": {
     "name": "murmur3-32",
-    "tag": "multihash",
+    "tag": "hash",
     "status": "draft",
     "description": "",
     "code": 35
@@ -180,6 +180,13 @@
     "status": "draft",
     "description": "",
     "code": 42
+  },
+  "43": {
+    "name": "ipcidr",
+    "tag": "multiaddr",
+    "status": "draft",
+    "description": "CIDR mask for IP addresses",
+    "code": 43
   },
   "47": {
     "name": "path",
@@ -215,6 +222,13 @@
     "status": "draft",
     "description": "",
     "code": 51
+  },
+  "52": {
+    "name": "varsig",
+    "tag": "multiformat",
+    "status": "draft",
+    "description": "Variable signature (varsig) multiformat",
+    "code": 52
   },
   "53": {
     "name": "dns",
@@ -370,6 +384,13 @@
     "description": "MerkleDAG COSE",
     "code": 134
   },
+  "140": {
+    "name": "lbry",
+    "tag": "namespace",
+    "status": "draft",
+    "description": "LBRY Address",
+    "code": 140
+  },
   "144": {
     "name": "eth-block",
     "tag": "ipld",
@@ -441,7 +462,7 @@
     "code": 153
   },
   "154": {
-    "name": "eth-reciept-log",
+    "name": "eth-receipt-log",
     "tag": "ipld",
     "status": "draft",
     "description": "Ethereum Transaction Receipt Log (RLP)",
@@ -574,28 +595,28 @@
     "code": 225
   },
   "226": {
-    "name": "ipld-ns",
+    "name": "ipld",
     "tag": "namespace",
     "status": "draft",
     "description": "IPLD path",
     "code": 226
   },
   "227": {
-    "name": "ipfs-ns",
+    "name": "ipfs",
     "tag": "namespace",
     "status": "draft",
     "description": "IPFS path",
     "code": 227
   },
   "228": {
-    "name": "swarm-ns",
+    "name": "swarm",
     "tag": "namespace",
     "status": "draft",
     "description": "Swarm path",
     "code": 228
   },
   "229": {
-    "name": "ipns-ns",
+    "name": "ipns",
     "tag": "namespace",
     "status": "draft",
     "description": "IPNS path",
@@ -657,6 +678,13 @@
     "description": "BLS12-381 concatenated public keys in both the G1 and G2 fields",
     "code": 238
   },
+  "239": {
+    "name": "sr25519-pub",
+    "tag": "key",
+    "status": "draft",
+    "description": "Sr25519 public key",
+    "code": 239
+  },
   "240": {
     "name": "dash-block",
     "tag": "ipld",
@@ -685,6 +713,13 @@
     "description": "Swarm Feed",
     "code": 251
   },
+  "252": {
+    "name": "beeson",
+    "tag": "ipld",
+    "status": "draft",
+    "description": "Swarm BeeSon",
+    "code": 252
+  },
   "273": {
     "name": "udp",
     "tag": "multiaddr",
@@ -695,30 +730,37 @@
   "275": {
     "name": "p2p-webrtc-star",
     "tag": "multiaddr",
-    "status": "draft",
-    "description": "",
+    "status": "deprecated",
+    "description": "Use webrtc or webrtc-direct instead",
     "code": 275
   },
   "276": {
     "name": "p2p-webrtc-direct",
     "tag": "multiaddr",
-    "status": "draft",
-    "description": "",
+    "status": "deprecated",
+    "description": "Use webrtc or webrtc-direct instead",
     "code": 276
   },
   "277": {
     "name": "p2p-stardust",
     "tag": "multiaddr",
-    "status": "draft",
+    "status": "deprecated",
     "description": "",
     "code": 277
   },
   "280": {
+    "name": "webrtc-direct",
+    "tag": "multiaddr",
+    "status": "draft",
+    "description": "ICE-lite webrtc transport with SDP munging during connection establishment and without use of a STUN server",
+    "code": 280
+  },
+  "281": {
     "name": "webrtc",
     "tag": "multiaddr",
     "status": "draft",
-    "description": "WebRTC",
-    "code": 280
+    "description": "webrtc transport where connection establishment is according to w3c spec",
+    "code": 281
   },
   "290": {
     "name": "p2p-circuit",
@@ -748,6 +790,20 @@
     "description": "",
     "code": 302
   },
+  "306": {
+    "name": "crc32",
+    "tag": "hash",
+    "status": "draft",
+    "description": "CRC-32 non-cryptographic hash algorithm (IEEE 802.3)",
+    "code": 306
+  },
+  "356": {
+    "name": "crc64-ecma",
+    "tag": "hash",
+    "status": "draft",
+    "description": "CRC-64 non-cryptographic hash algorithm (ECMA-182 - Annex B)",
+    "code": 356
+  },
   "400": {
     "name": "unix",
     "tag": "multiaddr",
@@ -763,10 +819,10 @@
     "code": 406
   },
   "421": {
-    "name": "ipfs",
+    "name": "p2p",
     "tag": "multiaddr",
-    "status": "draft",
-    "description": "libp2p (deprecated)",
+    "status": "permanent",
+    "description": "libp2p",
     "code": 421
   },
   "443": {
@@ -811,6 +867,13 @@
     "description": "",
     "code": 448
   },
+  "449": {
+    "name": "sni",
+    "tag": "multiaddr",
+    "status": "draft",
+    "description": "Server Name Indication RFC 6066 § 3",
+    "code": 449
+  },
   "454": {
     "name": "noise",
     "tag": "multiaddr",
@@ -818,12 +881,26 @@
     "description": "",
     "code": 454
   },
+  "456": {
+    "name": "shs",
+    "tag": "multiaddr",
+    "status": "draft",
+    "description": "Secure Scuttlebutt - Secret Handshake Stream",
+    "code": 456
+  },
   "460": {
     "name": "quic",
     "tag": "multiaddr",
     "status": "permanent",
     "description": "",
     "code": 460
+  },
+  "461": {
+    "name": "quic-v1",
+    "tag": "multiaddr",
+    "status": "permanent",
+    "description": "",
+    "code": 461
   },
   "465": {
     "name": "webtransport",
@@ -895,6 +972,13 @@
     "description": "Content Addressable aRchive (CAR)",
     "code": 514
   },
+  "768": {
+    "name": "ipns-record",
+    "tag": "serialization",
+    "status": "permanent",
+    "description": "Signed IPNS Record",
+    "code": 768
+  },
   "769": {
     "name": "libp2p-peer-record",
     "tag": "libp2p",
@@ -908,6 +992,13 @@
     "status": "permanent",
     "description": "libp2p relay reservation voucher",
     "code": 770
+  },
+  "777": {
+    "name": "memorytransport",
+    "tag": "libp2p",
+    "status": "permanent",
+    "description": "in memory transport for self-dialing and testing; arbitrary",
+    "code": 777
   },
   "1024": {
     "name": "car-index-sorted",
@@ -936,6 +1027,27 @@
     "status": "draft",
     "description": "Filecoin graphsync datatransfer",
     "code": 2320
+  },
+  "2336": {
+    "name": "transport-ipfs-gateway-http",
+    "tag": "transport",
+    "status": "draft",
+    "description": "HTTP IPFS Gateway trustless datatransfer",
+    "code": 2336
+  },
+  "3357": {
+    "name": "multidid",
+    "tag": "multiformat",
+    "status": "draft",
+    "description": "Compact encoding for Decentralized Identifers",
+    "code": 3357
+  },
+  "4113": {
+    "name": "fr32-sha2-256-trunc254-padded-binary-tree",
+    "tag": "multihash",
+    "status": "draft",
+    "description": "A balanced binary tree hash used in Filecoin Piece Commitments.",
+    "code": 4113
   },
   "4114": {
     "name": "sha2-256-trunc254-padded",
@@ -967,7 +1079,7 @@
   },
   "4130": {
     "name": "murmur3-x64-128",
-    "tag": "multihash",
+    "tag": "hash",
     "status": "draft",
     "description": "",
     "code": 4130
@@ -1077,6 +1189,41 @@
     "description": "Curve25519 private key",
     "code": 4866
   },
+  "4867": {
+    "name": "sr25519-priv",
+    "tag": "key",
+    "status": "draft",
+    "description": "Sr25519 private key",
+    "code": 4867
+  },
+  "4869": {
+    "name": "rsa-priv",
+    "tag": "key",
+    "status": "draft",
+    "description": "RSA private key",
+    "code": 4869
+  },
+  "4870": {
+    "name": "p256-priv",
+    "tag": "key",
+    "status": "draft",
+    "description": "P-256 private key",
+    "code": 4870
+  },
+  "4871": {
+    "name": "p384-priv",
+    "tag": "key",
+    "status": "draft",
+    "description": "P-384 private key",
+    "code": 4871
+  },
+  "4872": {
+    "name": "p521-priv",
+    "tag": "key",
+    "status": "draft",
+    "description": "P-521 private key",
+    "code": 4872
+  },
   "7425": {
     "name": "kangarootwelve",
     "tag": "multihash",
@@ -1084,12 +1231,33 @@
     "description": "KangarooTwelve is an extendable-output hash function based on Keccak-p",
     "code": 7425
   },
+  "8192": {
+    "name": "aes-gcm-256",
+    "tag": "encryption",
+    "status": "draft",
+    "description": "AES Galois/Counter Mode with 256-bit key and 12-byte IV",
+    "code": 8192
+  },
+  "16194": {
+    "name": "silverpine",
+    "tag": "multiaddr",
+    "status": "draft",
+    "description": "Experimental QUIC over yggdrasil and ironwood routing protocol",
+    "code": 16194
+  },
   "21325": {
     "name": "sm3-256",
     "tag": "multihash",
     "status": "draft",
     "description": "",
     "code": 21325
+  },
+  "28690": {
+    "name": "sha256a",
+    "tag": "hash",
+    "status": "draft",
+    "description": "The sum of multiple sha2-256 hashes; as specified by Ceramic CIP-124.",
+    "code": 28690
   },
   "45569": {
     "name": "blake2b-8",
@@ -3331,6 +3499,34 @@
     "description": "",
     "code": 46048
   },
+  "46049": {
+    "name": "xxh-32",
+    "tag": "hash",
+    "status": "draft",
+    "description": "Extremely fast non-cryptographic hash algorithm",
+    "code": 46049
+  },
+  "46050": {
+    "name": "xxh-64",
+    "tag": "hash",
+    "status": "draft",
+    "description": "Extremely fast non-cryptographic hash algorithm",
+    "code": 46050
+  },
+  "46051": {
+    "name": "xxh3-64",
+    "tag": "hash",
+    "status": "draft",
+    "description": "Extremely fast non-cryptographic hash algorithm",
+    "code": 46051
+  },
+  "46052": {
+    "name": "xxh3-128",
+    "tag": "hash",
+    "status": "draft",
+    "description": "Extremely fast non-cryptographic hash algorithm",
+    "code": 46052
+  },
   "46081": {
     "name": "poseidon-bls12_381-a2-fc1",
     "tag": "multihash",
@@ -3344,6 +3540,13 @@
     "status": "draft",
     "description": "Poseidon using BLS12-381 and arity of 2 with Filecoin parameters - high-security variant",
     "code": 46082
+  },
+  "46083": {
+    "name": "urdca-2015-canon",
+    "tag": "ipld",
+    "status": "draft",
+    "description": "The result of canonicalizing an input according to URDCA-2015 and then expressing its hash value as a multihash value.",
+    "code": 46083
   },
   "46337": {
     "name": "ssz",
@@ -3359,6 +3562,13 @@
     "description": "SSZ Merkle tree root using SHA2-256 as the hashing function and SSZ serialization for the block binary",
     "code": 46338
   },
+  "46593": {
+    "name": "json-jcs",
+    "tag": "ipld",
+    "status": "draft",
+    "description": "The result of canonicalizing an input according to JCS - JSON Canonicalisation Scheme (RFC 8785)",
+    "code": 46593
+  },
   "52225": {
     "name": "iscc",
     "tag": "softhash",
@@ -3372,6 +3582,55 @@
     "status": "draft",
     "description": "0xcert Asset Imprint (root hash)",
     "code": 52753
+  },
+  "53248": {
+    "name": "nonstandard-sig",
+    "tag": "varsig",
+    "status": "deprecated",
+    "description": "Namespace for all not yet standard signature algorithms",
+    "code": 53248
+  },
+  "53479": {
+    "name": "es256k",
+    "tag": "varsig",
+    "status": "draft",
+    "description": "ES256K Siganture Algorithm (secp256k1)",
+    "code": 53479
+  },
+  "53482": {
+    "name": "bls-12381-g1-sig",
+    "tag": "varsig",
+    "status": "draft",
+    "description": "G1 signature for BLS-12381-G2",
+    "code": 53482
+  },
+  "53483": {
+    "name": "bls-12381-g2-sig",
+    "tag": "varsig",
+    "status": "draft",
+    "description": "G2 signature for BLS-12381-G1",
+    "code": 53483
+  },
+  "53485": {
+    "name": "eddsa",
+    "tag": "varsig",
+    "status": "draft",
+    "description": "Edwards-Curve Digital Signature Algorithm",
+    "code": 53485
+  },
+  "53649": {
+    "name": "eip-191",
+    "tag": "varsig",
+    "status": "draft",
+    "description": "EIP-191 Ethereum Signed Data Standard",
+    "code": 53649
+  },
+  "60241": {
+    "name": "jwk_jcs-pub",
+    "tag": "key",
+    "status": "draft",
+    "description": "JSON object containing only the required members of a JWK (RFC 7518 and RFC 7517) representing the public key. Serialisation based on JCS (RFC 8785)",
+    "code": 60241
   },
   "61697": {
     "name": "fil-commitment-unsealed",
@@ -3463,5 +3722,40 @@
     "status": "draft",
     "description": "Kumandra Network Namespace",
     "code": 11835664
+  },
+  "13636096": {
+    "name": "es256",
+    "tag": "varsig",
+    "status": "draft",
+    "description": "ES256 Signature Algorithm",
+    "code": 13636096
+  },
+  "13636097": {
+    "name": "es284",
+    "tag": "varsig",
+    "status": "draft",
+    "description": "ES384 Signature Algorithm",
+    "code": 13636097
+  },
+  "13636098": {
+    "name": "es512",
+    "tag": "varsig",
+    "status": "draft",
+    "description": "ES512 Signature Algorithm",
+    "code": 13636098
+  },
+  "13636101": {
+    "name": "rs256",
+    "tag": "varsig",
+    "status": "draft",
+    "description": "RS256 Signature Algorithm",
+    "code": 13636101
+  },
+  "13639680": {
+    "name": "scion",
+    "tag": "multiaddr",
+    "status": "draft",
+    "description": "SCION Internet architecture",
+    "code": 13639680
   }
 }
