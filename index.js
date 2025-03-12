@@ -29,7 +29,7 @@ function decodeCID (value) {
     multicodec: codecs[cid.code],
     multihash: {
       ...cid.multihash,
-      name: codecs[cid.multihash.code].name
+      name: codecs[cid.multihash.code]?.name || 'unknown multihash'
     }
   }
 }
