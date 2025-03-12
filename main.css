@@ -4,3 +4,123 @@
 #outputs {
   opacity: 0;
 }
+
+/* CID Segment Visualization Styles */
+.cid-segment {
+  display: inline-block;
+  padding: 0.5rem;
+  margin: 0.25rem;
+  border-radius: 0.25rem;
+  font-family: monospace;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.cid-segment:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.segment-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.25rem;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cid-segment:hover .segment-tooltip {
+  opacity: 1;
+}
+
+/* Segment colors */
+.segment-multibase {
+  background-color: #ffdfba;
+  border: 1px solid #ffb347;
+}
+
+.segment-version {
+  background-color: #bae1ff;
+  border: 1px solid #47b0ff;
+}
+
+.segment-codec {
+  background-color: #baffc9;
+  border: 1px solid #47ff9a;
+}
+
+.segment-multihash-fn {
+  background-color: #ffb3ba;
+  border: 1px solid #ff4757;
+}
+
+.segment-multihash-len {
+  background-color: #ffffba;
+  border: 1px solid #ffff47;
+}
+
+.segment-multihash-digest {
+  background-color: #e2baff;
+  border: 1px solid #b347ff;
+}
+
+/* Full width digest styling */
+.full-width-digest {
+  width: 100%;
+  margin-top: 0.5rem;
+  word-break: break-all;
+  padding: 0.75rem;
+}
+
+/* Container width adjustments */
+#cid-segments-container {
+  max-width: 700px;
+  margin-left: 0;
+  margin-right: auto;
+  margin-top: 1rem;
+}
+
+
+/* Segment container alignment */
+#cid-segments .flex {
+  justify-content: flex-start;
+}
+
+/* Responsive adjustments */
+@media screen and (min-width: 60em) {
+  #cid-segments-container {
+    max-width: 650px;
+  }
+}
+
+@media screen and (max-width: 30em) {
+  #cid-segments-container {
+    max-width: 100%;
+  }
+
+  .cid-segment {
+    font-size: 0.8rem;
+    padding: 0.3rem;
+    margin: 0.15rem;
+  }
+
+  .segment-tooltip {
+    max-width: 200px;
+    font-size: 0.65rem;
+  }
+}

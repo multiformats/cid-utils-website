@@ -46,6 +46,19 @@
       </label>
       <pre class='f5 sans-serif fw5 ma0 pv2 dib overflow-x-auto w-100' id="hr-cid"></pre>
       <div class='f5 sans-serif ma0 charcoal-muted ttu f7 tracked'>multibase - version -  multicodec - multihash (name : size : digest in hex)</div>
+
+      <!-- CID Segment Visualization moved here -->
+      <div class='pt2 pb3' id="cid-segments-container">
+        <div id="cid-segments" class="ba b--black-10 pa3 br2 bg-near-white">
+          <div class="flex flex-wrap">
+            <!-- Segments will be added dynamically via JavaScript -->
+          </div>
+        </div>
+        <div class='f6 sans-serif ma0 charcoal-muted pt2'>
+          Hover over each segment to see details
+        </div>
+      </div>
+
       <div class='dn' id="cid" ></div>
     </div>
     <div class='pt4'>
@@ -112,6 +125,7 @@
       </label>
       <div class='f5 monospace ma0 overflow-x-auto overflow-y-hidden fw4 pt2' id="dnscidv1"></div>
     </div>
+
     </div>
   </section>
   <footer class='mt2 pv2 ph2 ph3-l bt b--light-gray'>
