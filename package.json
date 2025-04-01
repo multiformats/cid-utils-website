@@ -14,7 +14,6 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@ipfs-shipyard/ignite-metrics": "^1.2.2",
     "ipfs-css": "^1.4.0",
     "multiformats": "^9.7.1",
     "peer-id": "^0.16.0",
