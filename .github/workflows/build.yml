@@ -30,4 +30,5 @@ jobs:
           storacha-key: ${{ secrets.STORACHA_KEY }}
           storacha-proof: ${{ secrets.STORACHA_PROOF }}
           github-token: ${{ github.token }}
-
+          kubo-api-url: ${{ secrets.KUBO_API_URL }}
+          kubo-api-auth: ${{ secrets.KUBO_API_AUTH }}
