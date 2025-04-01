@@ -6,8 +6,7 @@
   "scripts": {
     "clean": "rm -rf dist/*",
     "start": "parcel index.html",
-    "build": "parcel build index.html --public-url '.'",
-    "deploy": "ipfs add -r --cid-version 1 --quieter dist"
+    "build": "parcel build index.html --public-url '.'"
   },
   "keywords": [],
   "author": "Victor Bjelkholm",
